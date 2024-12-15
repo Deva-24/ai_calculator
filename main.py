@@ -1,47 +1,58 @@
-from calculator import Calculator
+# main.py
+
+import sys
 from ai_helper import interpret_query
+from db_helper import save_calculation, load_history
 
-def main():
-    calc = Calculator()
-
+def start_calculator():
     print("Welcome to the Groq Function Chat!")
-    print("You can ask the system to perform addition, subtraction, multiplication, or division.\n")
-
+    print("You can ask the system to perform addition, subtraction, multiplication, division, power, or root.")
+    
     while True:
-        query = input("You: ")
-
-        if query.lower() in ['quit', 'exit']:
+        user_input = input("\nYou: ")
+        
+        if user_input.lower() == "quit":
             print("Goodbye!")
             break
-
-        # Use Groq AI to interpret the query
-        ai_response = interpret_query(query)
-        print(f"AI Interpretation: {ai_response}")
-
-        # Assuming the response is something like 'add 5 and 10' or 'divide 20 by 4'
-        parts = ai_response.split()
-        if len(parts) >= 3:
-            operation = parts[0].lower()
-            try:
-                a = float(parts[1])
-                b = float(parts[3])
-
-                if operation == 'add':
-                    result = calc.add(a, b)
-                elif operation == 'subtract':
-                    result = calc.subtract(a, b)
-                elif operation == 'multiply':
-                    result = calc.multiply(a, b)
-                elif operation == 'divide':
-                    result = calc.divide(a, b)
-                else:
-                    result = "Unrecognized operation"
-            except Exception as e:
-                result = f"Error: {e}"
-        else:
-            result = "Could not understand the query. Please try again."
-
-        print(f"Result: {result}\n")
         
+        # Interpreting the query and getting the result
+        result = interpret_query(user_input)
+        
+        # Show the result to the user
+        print(f"Result: {result}")
+        
+        # Optionally save the result in the database
+        save_calculation(user_input, result)
+        
+        # If the user asks for history
+        if "history" in user_input.lower():
+            history = load_history()
+            print("Calculation History:")
+            for entry in history:
+                print(f"{entry[0]} = {entry[1]}")
+
+    while True:
+        try:
+            user_input = input("You: ")
+            if user_input.lower() == 'exit':
+                break
+            
+            result = interpret_query(user_input)  # Assuming interpret_query returns the result
+            print(f"Result: {result}")
+            
+            # Save the calculation to the database
+            save_calculation(user_input, result)
+
+            # Optionally, load and display the calculation history
+            history = load_history()
+            print("\nCalculation History:")
+            for entry in history:
+                print(entry)
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
+           
+
+
 if __name__ == "__main__":
-    main()
+    start_calculator()

@@ -1,18 +1,38 @@
-import groqflow
-import os
-from dotenv import load_dotenv
+# ai_helper.py
 
-load_dotenv()
+import spacy
 
-# Initialize Groq model runner (assuming you have a model compiled for Groq hardware)
-MODEL_PATH = "path_to_your_optimized_groq_model.groq"  # Replace with your model's path
-model_runner = groqflow.ONNXRunner(MODEL_PATH)
+# Load the spaCy model for English language processing
+nlp = spacy.load("en_core_web_sm")
 
+# Define the function to interpret the query
 def interpret_query(query):
-    """ Use Groq-powered AI to interpret user queries. """
-    try:
-        input_data = {"input_text": query}  # Prepare the input for the Groq-optimized model
-        response = model_runner(input_data)  # Run the model on Groq hardware
-        return response["output_text"]      # Return the result from the AI model
-    except Exception as e:
-        return f"Error: {e}"
+    # Process the user query
+    doc = nlp(query.lower())
+    
+    # Extract numbers and operations from the query
+    numbers = [float(token.text) for token in doc if token.pos_ == 'NUM']
+    
+    # If less than two numbers are found, return an error
+    if len(numbers) < 2:
+        return "Error: Could not find two numbers for operation."
+
+    # Perform operations based on the user's query
+    if "add" in query:
+        return numbers[0] + numbers[1]
+    elif "subtract" in query:
+        return numbers[0] - numbers[1]
+    elif "multiply" in query:
+        return numbers[0] * numbers[1]
+    elif "divide" in query:
+        if numbers[1] == 0:
+            return "Error: Division by zero."
+        return numbers[0] / numbers[1]
+    elif "power" in query:
+        return numbers[0] ** numbers[1]
+    elif "root" in query:
+        if numbers[0] < 0:
+            return "Error: Cannot compute the root of a negative number."
+        return numbers[0] ** (1/numbers[1])
+    else:
+        return "Error: Unknown operation."
