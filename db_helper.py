@@ -7,7 +7,7 @@ def save_calculation(operation, result):
         connection = psycopg2.connect(
             dbname="ai_calc_v2",
             user="postgres",
-            password="deva",
+            password="devaa",
             host="localhost",
             port="5432"
         )
@@ -39,7 +39,7 @@ def load_history():
         connection = psycopg2.connect(
             dbname="ai_calc_v2",
             user="postgres",
-            password="deva",
+            password="devaa",
             host="localhost",
             port="5432"
         )
