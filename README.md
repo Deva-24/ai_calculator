@@ -1,7 +1,4 @@
-How to use it.
-
-```markdown
-# Ai enhanced Chat Calculator
+# Groq Function Chat Calculator
 
 Welcome to the **Groq Function Chat Calculator**! This project is a Python-based calculator bot that uses natural language processing (NLP) to interact with users. The bot allows users to perform basic arithmetic operations like addition, subtraction, multiplication, and division. Additionally, it stores the history of calculations in a PostgreSQL database using **SQLAlchemy** and supports features like undo, redo, and history clearing.
 
@@ -34,7 +31,7 @@ The calculator bot uses **spaCy** for natural language processing to interpret u
 
 ## File Structure
 
-```
+
 /ai_calculator
 │
 ├── /calculator
@@ -55,7 +52,7 @@ The calculator bot uses **spaCy** for natural language processing to interpret u
 ├── requirements.txt              # Python dependencies for the project
 ├── README.md                     # Project documentation (this file)
 └── main.py                        # Main entry point for the calculator bot
-```
+
 
 ## Installation
 
