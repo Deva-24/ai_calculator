@@ -31,7 +31,7 @@ The calculator bot uses **spaCy** for natural language processing to interpret u
 
 ## File Structure
 
-
+```bash
 /ai_calculator
 │
 ├── /calculator
@@ -52,7 +52,7 @@ The calculator bot uses **spaCy** for natural language processing to interpret u
 ├── requirements.txt              # Python dependencies for the project
 ├── README.md                     # Project documentation (this file)
 └── main.py                        # Main entry point for the calculator bot
-
+```
 
 ## Installation
 
