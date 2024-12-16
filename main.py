@@ -5,11 +5,37 @@ from ai_helper import interpret_query
 from db_helper import save_calculation, load_history
 
 def start_calculator():
-    print("Welcome to the Groq Function Chat!")
-    print("You can ask the system to perform addition, subtraction, multiplication, division, power, or root.")
-    
+     
+    print("*********************************************")
+    print("      Welcome to the Enhanced Calculator!   ")
+    print("*********************************************")
+    print("       I'm here to help you with:")
+    print("              ➕ Addition")
+    print("              ➖ Subtraction")
+    print("              ✖️  Multiplication")
+    print("              ➗ Division")
+    print("              🔼 Power")
+    print("              🔽 Square Root")
+    print("              ❓ History")
+    print("              🛑 Exit")      
+    print("")
+
+    print("Simply type your query and I'll compute the result for you. 😊")
+    print("For example:")
+    print("   'Add 5 and 3' ➡ 8")
+    print("   'What is the square root of 16?' ➡ 4")
+    print("")
+
+    print("Let's get started! Type 'exit' anytime to quit. 👋")
+    print("")
+    print("*********************************************")
+
+
+
+
+
     while True:
-        user_input = input("\nYou: ")
+        user_input = input("\nType here: ")
         
         if user_input.lower() == "quit":
             print("Goodbye!")
