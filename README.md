@@ -34,24 +34,25 @@ The calculator bot uses **spaCy** for natural language processing to interpret u
 ```bash
 /ai_calculator
 │
-├── /calculator
-│   ├── __init__.py               # Initializes the calculator package
-│   ├── calculator.py             # Contains the Calculator class and related methods
+├── /ai_calculator                # Rename this folder to ai_calculator
+│   ├── __init__.py               # Initializes the ai_calculator package
+│   ├── ai_calculator.py          # Contains the Calculator class and related methods
 │   ├── ai_helper.py              # Contains NLP processing using spaCy
 │   └── database.py               # Contains database-related functionality using SQLAlchemy
+│   └── main.py                   # Main entry point for the calculator bot
 │
 ├── /tests
 │   ├── test_calculator.py        # Unit tests for calculator operations
 │   ├── test_history.py           # Unit tests for history functionality
 │   └── test_db.py                # Unit tests for database interactions
 │
-├── /migrations                   # Database migrations (if using Alembic)
-│
 ├── .gitignore                    # Git ignore file
+├── .env                          # Environment variables (e.g., database URL, API keys)
 ├── config.py                     # Configuration file for environment variables
 ├── requirements.txt              # Python dependencies for the project
 ├── README.md                     # Project documentation (this file)
-└── main.py                        # Main entry point for the calculator bot
+└── __pycache__                   # Python bytecode cache (auto-generated)
+
 ```
 
 ## Installation
